@@ -17,6 +17,14 @@ app.get('/test', (_, res) => {
 // Authhentication route
 app.use('/api/auth', AuthRoute);
 
+sequelize.sync()
+  .then(() => {
+    console.log("Database synced successfully!");
+  })
+  .catch((error) => {
+    console.error("Error syncing the database:", error);
+});
+
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}.`)
 })
